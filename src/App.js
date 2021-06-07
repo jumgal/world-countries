@@ -1,24 +1,45 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import CountriesList from './components/CountriesList';
+import CountryDetails from './components/CountryDetails';
+
+import './styles/App.scss';
 
 function App() {
+
+  const [countries, setCountries] = useState([])
+
+  useEffect(() => {
+    fetch('https://restcountries.eu/rest/v2/all')
+      .then(res => res.json())
+      .then(data => setCountries(data))
+      .catch(err => console.log(err.message))
+  }, [])
+
+  const [color, setColor] = useState(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className={color ? 'container-main light' : 'container-main dark'}>
+        <Header color={color} setColor={setColor} />
+        <main>
+          {/* <Route exact path="/" component={CountriesList} /> */}
+          {/* <Route exact path="/details/:country" component={CountryDetails} /> */}
+          <Switch>
+            <Route exact path="/">
+              <CountriesList countries={countries} />
+            </Route>
+            <Route exact path="/details/:country">
+              <CountryDetails countries={countries} />
+            </Route>
+          </Switch>
+        </main>
+        <Footer />
+      </div>
+
+    </Router>
   );
 }
 

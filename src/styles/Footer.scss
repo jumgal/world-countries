@@ -1,0 +1,19 @@
+@import './colors';
+
+.main-footer {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    left: 0;
+    background-color: $light-blue;
+    color: $dark-gray;
+    margin-top: 0.5rem;
+    position: sticky;
+
+    .main-footer__heart {
+        color: red;
+        font-size: larger;
+    }
+}

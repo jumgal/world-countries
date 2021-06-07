@@ -1,0 +1,31 @@
+@import './resets';
+@import './colors';
+
+.container-main.light{
+    max-width: 1400px;
+    min-height: 100%;
+    margin: 0 auto;
+    background-color: $light-gray;
+    margin-bottom: -50px;
+
+    &::after {
+        content: "";
+        display: block;
+    }
+}
+
+.container-main.dark{
+    max-width: 1400px;
+    min-height: 100%;
+    margin: 0 auto;
+    background-color: $dark-color;
+    margin-bottom: -50px;
+
+    &::after {
+        content: "";
+        display: block;
+        height: 50x;
+    }
+}
+
+

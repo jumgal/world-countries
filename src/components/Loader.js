@@ -1,6 +1,6 @@
 const Loader = () => {
     return (
-        <p>Loading ...</p>
+        <img src="../../spinner.png" alt="spinner" />
     )
 }
 

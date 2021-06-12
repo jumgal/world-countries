@@ -20,12 +20,14 @@
     margin: 0 auto;
     background-color: $dark-color;
     margin-bottom: -50px;
+    color: $white-color;
 
     &::after {
         content: "";
         display: block;
         height: 50x;
     }
+
 }
 
 

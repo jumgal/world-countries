@@ -4,6 +4,8 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import CountriesList from './components/CountriesList';
 import CountryDetails from './components/CountryDetails';
+import ShowError from './components/ShowError';
+
 
 import './styles/App.scss';
 
@@ -29,11 +31,12 @@ function App() {
           {/* <Route exact path="/details/:country" component={CountryDetails} /> */}
           <Switch>
             <Route exact path="/">
-              <CountriesList countries={countries} />
+              <CountriesList countries={countries} setCountries={setCountries} />
             </Route>
             <Route exact path="/details/:country">
               <CountryDetails countries={countries} />
             </Route>
+            <Route component={ShowError} />
           </Switch>
         </main>
         <Footer />

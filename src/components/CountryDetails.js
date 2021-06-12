@@ -1,15 +1,23 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useHistory } from 'react-router-dom';
 import Loader from '../components/Loader';
-import { BsArrowLeft } from 'react-icons/bs'
+import { BsArrowLeft } from 'react-icons/bs';
+
 
 import '../styles/CountryDetails.scss'
 
 const CountryDetails = ({ countries }) => {
 
     const params = useParams();
+    const history = useHistory()
     const country = countries.find(c => c.name === params.country);
-    console.log(country)
+
+    const handleBorderClick = border => {
+        const borderCountry = countries.find(country => country.alpha3Code === border)
+        if (borderCountry) {
+            history.push(`/details/${borderCountry.name}`)
+        }
+    }
 
 
     return (
@@ -40,7 +48,7 @@ const CountryDetails = ({ countries }) => {
                         <div className="country-details__borders">
                             {country.borders.length === 0 ? null : <h3>Border Countries:</h3>}
                             {country.borders.length !== 0 ? (
-                                country.borders.map(border => <button className="country-borders__btn" key={border}>{border}</button>)
+                                country.borders.map(border => <button onClick={() => handleBorderClick(border)} className="country-borders__btn" key={border}>{border}</button>)
                             ) : null}
 
                         </div>
